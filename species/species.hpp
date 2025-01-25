@@ -3,8 +3,9 @@
 #define SPECIES_H
 
 #include <iostream>
+#include <string>
 #include "../structs/coords.hpp"
-
+#include "../random/random.hpp"
 
 class Species{
 	coords position;
@@ -24,7 +25,7 @@ public:
 	char* getDiet() { return &diet;};
 	
 	void sendAvaPos(int _avaliblePos) { avaliblePos = _avaliblePos;};	
-//	int move();
+	//int move();
 };
 
 
@@ -38,14 +39,22 @@ Species::Species(){
 
 Species::Species(double _hp, char _diet) : hp(_hp), diet(_diet){}; // Assing values for hp and diet;
 
+
+// (0,-1) = 1
+// (-1,0) = 2
+// (0,1)  = 4
+// (1,0)  = 8     
+
+
 /*
-int Species::move(){
+int Species::move(){ // CHange all of this and the one in map for an array of coords, and getting as argument the array of coords, and its length.
 	int _avaliblePos = avaliblePos;
 	int direction = 8;
-	string values;
+	std::string values;
+	coords _move;
 
 	for (int i=0; i < 4; i++){
-		if (_avaliblePos - direction > 0){
+		if (_avaliblePos - direction >= 0){
 			values += std::to_string(direction);
 			_avaliblePos -= direction;
 		}	
@@ -53,9 +62,11 @@ int Species::move(){
 		direction /= 2; 
 	}
 
-	return 1234;
 
-	//direction = stoi(values[generateRandom(0, length(values))])
+	values = values[generateNumber(0,values.length() -1)];
+
+	return stoi(values);
+
 
 	// return pos as a power of 2 so 1 2 4 8;
 }
