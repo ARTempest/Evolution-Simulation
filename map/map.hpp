@@ -34,63 +34,26 @@ void actualizeMap(){
 // y = -1    y = 0     y = 1      y = 0
 // x =  0    x = -1    x = 0      x = 1
 
-
-
-/*int avalibleGrids(int posX, int posY) {
-	int direction = 1;
-	int _avalibleGrids = 0;
-	int x= posX;
-	int y= posY - 1;
-
-
-
-	for (int i=1; i <= 4; i++){
-
-
-		//std::cout << i << ". x: " << x << '\n';
-		//std::cout << i << ". y: " << y << '\n';
-		
-		if (map[y][x] == '.'){
-			_avalibleGrids += direction; // Make an array with a permanent length of 4, and fill it with the coords you can move, but also the ones you cant move and since you are sending the length of the "array" with possible movements like even if it is 4 elements you give a length of 2 then it is gonna select between the first 2, and also the ones that you cant move you put them in the last part of the array, like -1, -2, -3.
-		}
-
-
-		direction *= 2;
-
-		if (y < posY){
-			x--;
-			y++;
-		} else if (y == posY) {
-			x++;
-			y++;
-		} else {
-			y--;
-			x++;
-		}
-	
-
-
-
+void spawnSpecie(coords* speciePos, char* icon){
+	if (map[speciePos -> y][speciePos -> x] == '.'){
+		map[speciePos -> y][speciePos -> x] = *icon;
 	}
-
-	return _avalibleGrids;
 }
-
-*/
-
-
 
 coords* avalibleGrids(coords speciePos){
 	int index = 1;
+	const coords nullCord = {0,0};
 
 	coords _speciePos = speciePos;
 	_speciePos.y -= 1;
+	
 
 	static coords _avalibleGrids[5]; // Gotta find a solution for this problem this variable should be inside of the function bellow.
 	_avalibleGrids[0] = speciePos;
 
-
 	for (int i=1; i <= 4; i++){
+		_avalibleGrids[i] = nullCord;
+
 		if (map[_speciePos.y][_speciePos.x] == '.'){
 			_avalibleGrids[index] = _speciePos;
 			index ++;
@@ -118,9 +81,9 @@ coords* avalibleGrids(coords speciePos){
 
 
 
-void moveSpecie(coords oldPos, coords newPos){ // This is just provisional, i will save this and then ill try to use coords instead of powers of 2.
+void moveSpecie(coords oldPos, coords newPos, char* icon){ // This is just provisional, i will save this and then ill try to use coords instead of powers of 2.
 	map[oldPos.y][oldPos.x] = '.';
-	map[newPos.y][newPos.x] = 'H';
+	map[newPos.y][newPos.x] = *icon;
 }
 
 

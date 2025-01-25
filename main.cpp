@@ -5,25 +5,33 @@
 using namespace std;
 
 int main(){
-	actualizeMap();
 	Species first;
 	cout << first.getPos() -> x << '\n';
-	coords ava;
-	ava.x = 1;
-	ava.y = 1;
+	coords oldPos = *first.getPos();
+
+	spawnSpecie(first.getPos(), first.getDiet());
+	actualizeMap();
+	coords ava = {1,1};
+
 	coords* grid;
+	
 	cout << "before it starts." << '\n';
 	grid = avalibleGrids(ava);
-	cout << grid -> x << '\n';
-	cout << grid -> y << '\n';
-	grid++;
-	cout << grid -> x << '\n';
-	cout << grid -> y << '\n';
-	grid++;
-	cout << grid -> x << '\n';
-	cout << grid -> y << '\n';
+	first.sendAvaPos(grid);
+	first.move();
+	
+
+	coords newPos = *first.getPos();
+	char* icon = first.getDiet();
 
 
+	cout << "x: " << oldPos.x << " y: " << oldPos.y << '\n';
+	cout << "x: " << newPos.x << " y: " << newPos.y << '\n';
+
+
+	moveSpecie(oldPos, newPos, icon);
+	actualizeMap();
+	
 
 	//cout << avalibleGrids(0,0) << '\n';
 	return 0;
