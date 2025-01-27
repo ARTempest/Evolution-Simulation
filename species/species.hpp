@@ -9,22 +9,22 @@
 
 class Species{
 	coords position;
-	coords* avaliblePos;
+	coords *avaliblePos;
 
 	double hp;
-	double thirsty = 100;
+	double thirsty;
 	char diet;
 	char icon = diet;
 
 public:
 	Species ();
-	Species(double,char);
+	Species(coords,double,char);
 	
-	coords* getPos(){ return &position;};
-	double* getHP() { return &hp;};
-	char* getDiet() { return &diet;};
+	coords getPos() { return  position;};
+	double  getHP() { return hp;};
+	char  getDiet() { return diet;};
 	
-	void sendAvaPos(coords* _avaliblePos) { avaliblePos = _avaliblePos;};
+	void sendAvaPos(coords *_avaliblePos) { avaliblePos = _avaliblePos;};
 
 
 	void move();
@@ -36,10 +36,11 @@ Species::Species(){
 	position.y = 1;
 
 	hp = 1;
+	thirsty = 100;
 	diet = 'H';
 }
 
-Species::Species(double _hp, char _diet) : hp(_hp), diet(_diet){}; // Assing values for hp and diet;
+Species::Species(coords _position,double _hp, char _diet) : position(_position), hp(_hp), diet(_diet){}; // Assing values for hp and diet;
 
 void Species::move(){
 	coords _move;

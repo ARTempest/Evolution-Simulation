@@ -29,14 +29,9 @@ void actualizeMap(){
 	}
 }
 
-
-
-// y = -1    y = 0     y = 1      y = 0
-// x =  0    x = -1    x = 0      x = 1
-
-void spawnSpecie(coords* speciePos, char* icon){
-	if (map[speciePos -> y][speciePos -> x] == '.'){
-		map[speciePos -> y][speciePos -> x] = *icon;
+void spawnSpecie(coords speciePos, char icon){
+	if (map[speciePos.y][speciePos.x] == '.'){
+		map[speciePos.y][speciePos.x] = icon;
 	}
 }
 
@@ -78,12 +73,9 @@ coords* avalibleGrids(coords speciePos){
 }
 
 
-
-
-
-void moveSpecie(coords oldPos, coords newPos, char* icon){ // This is just provisional, i will save this and then ill try to use coords instead of powers of 2.
+void moveSpecie(coords oldPos, coords newPos, char icon){ // This is just provisional, i will save this and then ill try to use coords instead of powers of 2.
 	map[oldPos.y][oldPos.x] = '.';
-	map[newPos.y][newPos.x] = *icon;
+	map[newPos.y][newPos.x] = icon;
 }
 
 
