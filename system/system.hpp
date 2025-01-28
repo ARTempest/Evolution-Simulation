@@ -4,14 +4,14 @@
 
 
 Species specieArr[10];
-int specieAmount = 2;
+int specieAmount = 1;
 
 void initializeSpecies(){
 
-	Species specie1({1,1}, 1, 'a'), specie2({7,7}, 1, 'b');
+	Species specie1({1,1}, 1, 'a', 100, 5), specie2({7,7}, 1, 'b', 100, 5);
 	
 	specieArr[0] = specie1;
-	specieArr[1] = specie2;
+	//specieArr[1] = specie2;
 
 	for (int i=0; i < specieAmount; i++){
 		spawnSpecie(specieArr[i].getPos(), specieArr[i].getDiet());
@@ -26,7 +26,6 @@ void activateLoop(){
 	getline(std::cin, line);
 	
 	while (line != "stop"){
-		getline(std::cin, line);
 		
 		for (int i=0; i < specieAmount; i++) {
 			coords speciePosBefore = specieArr[i].getPos();
@@ -34,12 +33,14 @@ void activateLoop(){
 
 			specieArr[i].sendAvaPos(specieAvaPos);
 			
-			specieArr[i].move();
+			specieArr[i].actions();
+			std::cout << specieArr[i].getHungry() << '\n';
 			moveSpecie(speciePosBefore, specieArr[i].getPos(), specieArr[i].getDiet());
 		}
 		
 		actualizeMap();
 
+		getline(std::cin, line);
 	}
 }
 

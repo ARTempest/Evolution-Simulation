@@ -2,18 +2,14 @@
 #ifndef HEADER_H
 #define HEADER_H
 
-#include <iostream>
-#include <string>
-#include "../structs/coords.hpp"
-
 const int mapSizeY = 10;
 const int mapSizeX = 20;
 
 std::string map[mapSizeY] = {
 "####################", // 1
 "#..................#", // 2
-"#..................#", // 3
-"#..................#", // 4
+"#...........~~~~...#", // 3
+"#..........~~~~~...#", // 4
 "#..................#", // 5
 "#..................#", // 6
 "#..................#", // 7
